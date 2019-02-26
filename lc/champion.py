@@ -30,5 +30,8 @@ class Champion:
 
     def get_guides(self):
         guide_soup = soup_request("https://www.mobafire.com/league-of-legends/"+self.champion_aux+"-guide")
-        guide_links = guide_soup.find(class_='browse-list').get_text()
-        return guide_links
+        guide_soup = guide_soup.find(class_='browse-list').find_all(class_='browse-list__item')
+        guide_list = [guide.get_text().strip().strip('\t').split('\n') for guide in guide_soup]
+        for i in guide_list:
+            print(i)
+        return guide_list

@@ -9,4 +9,4 @@ champion_list = ["Alistar", "Annie", "Ashe", "Fiddlesticks", "Jax", "Kayle", "Ma
 
 a = Champion('Singed')
 print(a.get_counters())
-print(a.get_guides())
+a.get_guides()
