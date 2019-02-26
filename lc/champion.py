@@ -1,16 +1,11 @@
-import os
-from urllib.request import urlopen, Request
+from utils import soup_request
 from bs4 import BeautifulSoup
 
 class Champion:
     def __init__(self, champion):
         self.champion = champion
         self.champion_aux = champion.lower().strip().replace(" ", "-")
-        url= "http://www.lolcounter.com/champions/"+self.champion_aux
-        req = Request(url, headers={'User-Agent' : "counter-lol"})
-        respuesta = urlopen(req)
-        contenido_web = respuesta.read()
-        self.counter_soup = BeautifulSoup(contenido_web, "html.parser")
+        self.counter_soup = soup_request("http://www.lolcounter.com/champions/"+self.champion_aux)
 
     def __repr__(self):
         return 'Champion(%r)' % (self.champion)
@@ -28,6 +23,12 @@ class Champion:
         """
         function to get the weakest champions against champion
         """
-        strong_to = self.counter_soup.find(class_='strong-block').get_text()
-        print(strong_to)
-        return
+        weaklings = self.counter_soup.find(class_='strong-block')
+        weaklings = counters.find_all(class_='champ-block')
+        weak_list = [weakling.find(class_='name').get_text() for weakling in weaklings]
+        return weak_list
+
+    def get_guides(self):
+        guide_soup = soup_request("https://www.mobafire.com/league-of-legends/"+self.champion_aux+"-guide")
+        guide_links = guide_soup.find(class_='browse-list').get_text()
+        return guide_links
