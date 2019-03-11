@@ -3,12 +3,23 @@ from tkinter import  ttk, Tk, messagebox as mbox
 from champion import Champion	
 from PIL import Image, ImageTk 
 
-champion_list = ["Alistar", "Annie", "Ashe", "Fiddlesticks", "Jax", "Kayle", "Master Yi", "Morgana",
-"Amumu", "Cho'Gath", "Anivia", "Rammus", "Veigar", "Kassadin", "Gangplank",
-"Nunu", "Ryze", "Sion", "Sivir", "Soraka", "Teemo", "Tristana", "Twisted Fate",
-"Taric", "Malphite", "Janna", "Blitzcrank", "Dr. Mundo", "Katarina", "Corki",
-"Warwick", "Singed", "Zilean", "Evelynn", "Twitch", "Tryndamere", "Karthus",
-"Nasus", "Heimerdinger", "Shaco", "Udyr", "Nidalee", "Poppy", "Gragas"]
+champion_list = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", 
+"Ashe", "Aurelion Sol", "Azir", "Bard", "Blitzcrank", "Brand", "Braum", "Caitlyn", "Camille", 
+"Cassiopeia", "Cho'Gath", "Corki", "Darius", "Diana", "Dr. Mundo", "Draven", "Ekko", 
+"Elise", "Evelynn", "Ezreal", "Fiddlesticks", "Fiora", "Fizz", "Galio", "Gangplank", 
+"Garen", "Gnar", "Gragas", "Graves", "Hecarim", "Heimerdinger", "Illaoi", "Irelia", 
+"Ivern", "Janna", "Jarvan IV", "Jax", "Jayce", "Jhin", "Jinx","Kai'sa", "Kalista", "Karma", 
+"Karthus", "Kassadin", "Katarina", "Kayle", "Kayn", "Kennen", "Kha'Zix", "Kindred", 
+"Kled", "Kog'Maw", "LeBlanc", "Lee Sin", "Leona", "Lissandra", "Lucian", "Lulu", 
+"Lux", "Malphite", "Malzahar", "Maokai", "Master Yi", "Miss Fortune", "Mordekaiser", 
+"Morgana", "Nami", "Nasus", "Nautilus", "Neeko", "Nidalee", "Nocturne", "Nunu", "Olaf", 
+"Orianna", "Ornn", "Pantheon", "Poppy", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Renekton", 
+"Rengar", "Riven", "Rumble", "Ryze", "Sejuani", "Shaco", "Shen", "Shyvana", "Singed", 
+"Sion", "Sivir", "Skarner", "Sona", "Soraka", "Swain", "Sylas", "Syndra", "Tahm Kench", "Tailyah", 
+"Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate", 
+"Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor", "Vladimir", 
+"Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac", 
+"Zed", "Ziggs", "Zilean", "Zoe", "Zyra"]
 #a = Champion('Singed')
 #a.get_guides()
 #print(a.get_counters())
@@ -35,7 +46,7 @@ def _quit():
 
 
 def aboutmsg():
-	mbox.showinfo('LOL counter 0.1.0', '2018, hecho por Lukas Gutiérrez')
+	mbox.showinfo('LOL counter 0.1.0', '2018, hecho por Lukas Gutiérrez.\n\nContacto:\nlukasgutierrezlisboa@gmail.com')
 
 
 def menu():
@@ -54,7 +65,7 @@ def menu():
 def search_layout():
 	search_frame = ttk.LabelFrame(window)
 	search_frame.grid(column= 0, row = 0, padx=20, pady=20)
-	label = ttk.Label(search_frame, text="Escoge el campeon")
+	label = ttk.Label(search_frame, text="Escoge el campeón")
 	label.grid(column=0,row=0)
 	champion = tk.StringVar()
 	champion_chosen = ttk.Combobox(search_frame, width=12, textvariable=champion)
@@ -66,9 +77,9 @@ def search_layout():
 
 if __name__ == "__main__":
 	window = Tk()
-	window.iconbitmap(r'.\src\favicon.ico')
+	#	window.iconbitmap(r'.\src\favicon.ico')
 	window.title('LOL data')
-	window.resizable(0, 0)	
+	window.resizable(0, 0)		
 	menu()
 	search_layout()
 	window.mainloop()
