@@ -1,6 +1,6 @@
-# League Of Data
+# LOL Data
 
-Data League is an app that gives you the information of the desired champion. Version 0.1.0
+LOL Data is an app that gives you the information of the desired champion. Version 0.1.2('Iron 3').
 
 ## Requeriments
 

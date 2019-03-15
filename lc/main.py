@@ -20,22 +20,35 @@ champion_list = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie
 "Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor", "Vladimir", 
 "Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac", 
 "Zed", "Ziggs", "Zilean", "Zoe", "Zyra"]
-#a = Champion('Singed')
-#a.get_guides()
-#print(a.get_counters())
 
+i = 0
+
+class LabelSeparator (tk.Frame):
+    def __init__ (self, parent, text = "", width = "", *args):
+        tk.Frame.__init__ (self, parent, *args)
+
+        self.separator = ttk.Separator (self, orient = tk.HORIZONTAL)
+        self.separator.grid (row = 0, column = 0, sticky = "ew")
+
+        self.label = ttk.Label (self, text = text)
+        self.label.grid (row = 0, column = 0, padx = width)
 
 def search(champion):
-	counter_label = []
 	i = 0
+	for element in counter_label:
+		element.grid_remove()
+	counter_label.clear()
 	query =Champion(champion)
-	query_frame = ttk.LabelFrame(window)
 	query_frame.grid(column=0,row=1)
 	counters = query.get_counters()
 	for counter in counters:
 		counter_label.append(ttk.Label(query_frame, text = counter))
+	title = ttk.Label(query_frame, text = 'Counters list')
+	title.grid(column=0,row=0)
+	separator = ttk.Separator(query_frame,orient= tk.HORIZONTAL)
+	separator.grid (row = 1,column= 0, sticky ="ew")
 	for label in counter_label:	
-		label.grid(column=i, row=0)
+		label.grid(column=0, row=i+2)
 		i += 1
 
 
@@ -46,7 +59,9 @@ def _quit():
 
 
 def aboutmsg():
-	mbox.showinfo('LOL counter 0.1.0', '2018, hecho por Lukas Gutiérrez.\n\nContacto:\nlukasgutierrezlisboa@gmail.com')
+	mbox.showinfo('LOL data 0.1.2', '2018, hecho por Lukas Gutiérrez.\nProyecto bajo licencia MIT.' 
+				+'\nhttps://github.com/Legutier/lol-counter/blob/master/LICENSE' 
+				+'\n\nContacto:\nlukasgutierrezlisboa@gmail.com')
 
 
 def menu():
@@ -77,10 +92,14 @@ def search_layout():
 
 if __name__ == "__main__":
 	window = Tk()
-	#	window.iconbitmap(r'.\src\favicon.ico')
+	#window.iconbitmap(r'.\src\favicon.ico')
+	counter_label = []
+	query_frame = ttk.LabelFrame(window)
+	query_frame.grid(column=0,row=1)
 	window.title('LOL data')
 	window.resizable(0, 0)		
 	menu()
 	search_layout()
+	version_label = ttk.Label(window, text="version 0.1.2 \'Iron 3\'").grid(column=i,row=10)
 	window.mainloop()
 
