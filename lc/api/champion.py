@@ -1,7 +1,10 @@
-from utils import soup_request
+from api.utils import soup_request
 from bs4 import BeautifulSoup
 
 class Champion:
+    """
+    Champion API useful for scrapping needed data in 'LOL data'.
+    """
     def __init__(self, champion):
         self.champion = champion
         self.champion_aux = champion.lower().strip().replace(" ", "-")
@@ -24,7 +27,7 @@ class Champion:
         function to get the weakest champions against champion
         """
         weaklings = self.counter_soup.find(class_='strong-block')
-        weaklings = counters.find_all(class_='champ-block')
+        weaklings = weaklings.find_all(class_='champ-block')
         weak_list = [weakling.find(class_='name').get_text() for weakling in weaklings]
         return weak_list
 
