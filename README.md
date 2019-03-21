@@ -1,6 +1,6 @@
 # LOL Data
 
-LOL Data is an app that gives you the information of the desired champion. Version 0.1.2('Iron 3').
+LOL Data is an app that gives you the information of the desired champion. Version 0.2.0('Iron 2').
 
 ## Requeriments
 
@@ -9,7 +9,7 @@ LOL Data is an app that gives you the information of the desired champion. Versi
 
 ## How to use
 
-First you hate to run the command: 
+First you have to run the command: 
 ```
 python main.py
 ```

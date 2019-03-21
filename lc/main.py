@@ -4,7 +4,10 @@ from api.champion import Champion
 from gui.searchLayout import SearchLayout
 from PIL import Image, ImageTk 
 
-version = '0.2.0 \'Iron 2\''
+
+version = '0.3.0 \'Iron 2\''
+
+
 class App():
 
 	champion_list = ["Aatrox", "Ahri", "Akali", "Alistar", "Amumu", "Anivia", "Annie", 
@@ -19,20 +22,24 @@ class App():
 	"Morgana", "Nami", "Nasus", "Nautilus", "Neeko", "Nidalee", "Nocturne", "Nunu", "Olaf", 
 	"Orianna", "Ornn", "Pantheon", "Poppy", "Quinn", "Rakan", "Rammus", "Rek'Sai", "Renekton", 
 	"Rengar", "Riven", "Rumble", "Ryze", "Sejuani", "Shaco", "Shen", "Shyvana", "Singed", 
-	"Sion", "Sivir", "Skarner", "Sona", "Soraka", "Swain", "Sylas", "Syndra", "Tahm Kench", "Tailyah", 
-	"Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate", 
-	"Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor", "Vladimir", 
-	"Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac", 
+	"Sion", "Sivir", "Skarner", "Sona", "Soraka", "Swain", "Sylas", "Syndra", "Tahm Kench", "Tailyah",
+	"Talon", "Taric", "Teemo", "Thresh", "Tristana", "Trundle", "Tryndamere", "Twisted Fate",
+	"Twitch", "Udyr", "Urgot", "Varus", "Vayne", "Veigar", "Vel'Koz", "Vi", "Viktor", "Vladimir",
+	"Volibear", "Warwick", "Wukong", "Xayah", "Xerath", "Xin Zhao", "Yasuo", "Yorick", "Zac",
 	"Zed", "Ziggs", "Zilean", "Zoe", "Zyra"]
 	
-	def __init__(self, _version):
+	def __init__(self, _version, _fg, _bg):
+		self._bg = _bg
+		self._fg = _fg
 		self.window = Tk()
+		self.window.minsize(height=500, width=200)
 		self.window.title('LOL Data')
+		self.window.config(background=_bg)
 		self.window.resizable(0,0)
 		self.menu()
 		self.version = _version
-		self.s_widget = SearchLayout(self.window,self.champion_list)
-		self.version_label = ttk.Label(self.window, text=self.version).grid(column=0,row=10)
+		self.s_widget = SearchLayout(self.window,self.champion_list,self._bg,self._fg)
+		self.version_label = tk.Label(self.window, text=self.version, bg= self._bg, fg=self._fg).grid(sticky='s')
 		self.window.mainloop()
 
 	def _quit(self):
@@ -55,16 +62,17 @@ class App():
 
 	def menu(self):
 		menu_bar =  tk.Menu(self.window)
+		menu_bar.config(bg = self._bg, fg = self._fg,bd=0)
 		self.window.config(menu=menu_bar)
-		menu_inicio = tk.Menu(menu_bar, tearoff = 0)
+		menu_inicio = tk.Menu(menu_bar, tearoff = 0, bg= self._bg, fg= self._fg,bd=0)
 		menu_inicio.add_command(label='buscar',command=self.search_layout)
 		menu_inicio.add_separator()
 		menu_inicio.add_command(label='Salir', command=self._quit)
 		menu_bar.add_cascade(label="Inicio", menu=menu_inicio)
-		menu_help = tk.Menu(self.window)
+		menu_help = tk.Menu(self.window, bg = self._bg, fg = self._fg)
 		menu_help.add_command(label='About', command = self.aboutmsg)
 		menu_bar.add_cascade(label='Ayuda', menu=menu_help)	
 
 
 if __name__ == "__main__":
-	App(version)
+	App(version,  'light goldenrod', 'Gray15')
